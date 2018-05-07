@@ -1,0 +1,32 @@
+{{!--list of movies we want to watch --}}
+
+<h1>Movies to Watch</h1>
+<ul>
+    {{#each movies}}
+    <li>
+        <p>{{this.id}}.{{this.movie}}</p>
+        {{!--DELETE form has a hidden input value -- id of movie we are currently on with delete action--}}
+        <form action="/delete?_method=DELETE" method="POST">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {{/each}}
+</ul>
+
+<h2>Add a Movie to Watch</h2>
+
+{{!--POST to the /create route when button is submitted--}}
+<form method="POST" action="/create">
+    <textarea type="text" name="movie"></textarea>
+    <button type="submit"> Save Movie</button>
+</form>
+
+{{!--Updat movie form, action part is used to use PUT method--}}
+
+<h2>Update a Movie</h2>
+<form method="POST" action="/update?_method=PUT">
+    <input type="text" name="id" placeholder="id">
+    <textarea type="text" name="movie" placeholder="what do you want to update this movie to?"></textarea>
+    <button types="submit">Update Movie</button>
+</form>
